@@ -17,7 +17,8 @@
           <div>
             <img src="./image/of-pro.png" id="profile"/>
           </div>
-          <button class="button play-button" onclick="playRandomSection()"> <i class="bi bi-play-circle"></i> PLAY</button>
+          <!-- <button class="button play-button" onclick="playRandomSection()"> <i class="bi bi-play-circle"></i> PLAY</button> -->
+          <button class="button play-button">PLAY</button>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span>MENU</span>
           </button>
@@ -143,17 +144,46 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
-        var vimeoPlayer = new Vimeo.Player(document.getElementById('vimeo-video'));
+        // var vimeoPlayer = new Vimeo.Player(document.getElementById('vimeo-video'));
 
-        function playRandomSection() {
-        // Tính toán thời gian bắt đầu ngẫu nhiên
-        var randomStart = Math.floor(Math.random() * 60); // Phát ngẫu nhiên từ 0 đến 60 giây
+        // function playRandomSection() {
+        // // Tính toán thời gian bắt đầu ngẫu nhiên
+        // var randomStart = Math.floor(Math.random() * 60); // Phát ngẫu nhiên từ 0 đến 60 giây
 
-        // Phát video từ thời gian bắt đầu ngẫu nhiên
-        vimeoPlayer.setCurrentTime(randomStart).then(function() {
-            vimeoPlayer.play();
-        });
+        // // Phát video từ thời gian bắt đầu ngẫu nhiên
+        // vimeoPlayer.setCurrentTime(randomStart).then(function() {
+        //     vimeoPlayer.play();
+        // });
+        // }
+
+        const iframe = document.getElementById('vimeo-video');
+        const playBtn = document.querySelector(".play-button")
+        let isPlaying = false;
+
+        function togglePlayPause() {
+            if (isPlaying) {
+            pauseVideo();
+            playBtn.textContent = 'Play';
+            } else {
+            playVideo();
+            playBtn.textContent = 'Pause';
+            }
+            isPlaying = !isPlaying;
         }
+
+        // Function to play the video
+        function playVideo() {
+            iframe.contentWindow.postMessage('{"method":"play"}', '*');
+        }
+
+        // Function to pause the video
+        function pauseVideo() {
+            iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+        }
+
+        // Event listener for toggle button
+        playBtn.addEventListener('click', togglePlayPause);
+
 
         const profileBtn = document.querySelector("#profile")
         profileBtn.addEventListener('click', () => {
