@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+    <audio id="myAudio" autoplay>
+        <source src="./image/greeting.mp3" type="audio/mpeg">
+      </audio>
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid fb">
 
@@ -90,9 +94,9 @@
 
 
     </div>
-    <img src="./image/divider.png" class="divider"/>
+    <img src="./image/divider.png" class="divider" id="divider1"/>
 
-    <div id="history">
+    <div id="history" class="center">
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -127,19 +131,39 @@
         </button>
       </div>
     </div>
-    <img src="./image/divider.png" class="divider"/>
+    <img src="./image/divider.png" class="divider" id="divider2"/>
     <div class="history-body" id="mission">
       <img src="./image/his9.jpg" class="center" />
     </div>
-    <img src="./image/divider.png" class="divider"/>
+    <img src="./image/divider.png" class="divider" id="divider3"/>
     <div class="history-body" id="tokenomics">
       <img src="./image/tokenomics.jpg" class="center" />
     </div>
-    <img src="./image/divider.png" class="divider"/>
+    <img src="./image/divider.png" class="divider" id="divider4"/>
 
     <div class="history-body" id="roadmap">
       <img src="./image/roadmap.jpg" class="center" />
     </div>
+    <img src="./image/divider.png" class="divider" id="divider5"/>
+
+      <h3 id="partners" class="text-center">Partners</h3>
+
+    <div class="container text-center">
+      <div class="row row-cols-2">
+        <div class="col"><img src="./image/cgk.jpg"  /></div>
+        <div class="col"><img src="./image/cmc.jpg"  /></div>
+        <div class="col"><img src="./image/dexscreen.jpg"  /></div>
+        <div class="col"><img src="./image/dext.jpg"  /></div>
+        <div class="col"><img src="./image/pinksale.jpg"  /></div>
+        <div class="col"><img src="./image/raydium.jpg"  /></div>
+      </div>
+    </div>
+
+    <audio id="myAudio-copy">
+        <source src="./image/smb_world_clear.wav" type="audio/mpeg">
+    </audio>
+    <audio id="scrollSound" src="./image/smb_jump-small.wav"></audio>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://player.vimeo.com/api/player.js"></script>
@@ -189,6 +213,51 @@
         profileBtn.addEventListener('click', () => {
             window.location.href = '/'
         })
+
+        const caAudio = document.getElementById("myAudio-copy")
+
+        const caBox = document.querySelector("#ca-box")
+        caBox.addEventListener("click", () => {
+          const textToCopy = caBox.innerHTML;
+
+          navigator.clipboard.writeText(textToCopy)
+          .then(() => {
+            caAudio.play()
+            alert('CA copied to clipboard. Thank you and good luck!')
+          })
+          .catch((e) => {
+            alert("Unable to copy CA")
+            console.error("Error", e)
+          })
+        })
+
+        // tieng nhay
+        const dividerElements = document.querySelectorAll('.divider');
+        const scrollSound = document.getElementById('scrollSound');
+
+        // Function to check if an element is in viewport
+        function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+        }
+
+        // Function to check if any .divider element is in viewport and play sound
+        function checkScroll() {
+        dividerElements.forEach(divider => {
+            if (isInViewport(divider)) {
+            scrollSound.play(); // Play sound
+            }
+        });
+        }
+
+        // Attach scroll event listener to check for scrolling
+        window.addEventListener('scroll', checkScroll);
+
     </script>
 </body>
 
