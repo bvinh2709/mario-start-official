@@ -32,7 +32,7 @@
                 <div class="nav-link ca-ca" href="#">CA: </div>
               </li>
                   <li class="nav-item">
-                    <div class="nav-link" href="#"><span id="ca-box">4YDo2b2AscrPLTJU739ouGJRpVTY9rRE53tdSXf7ev2P</span></div>
+                    <div class="nav-link" href="#"><span class="ca-box">4YDo2b2AscrPLTJU739ouGJRpVTY9rRE53tdSXf7ev2P</span></div>
                   </li>
               <li class="nav-item gray-bg">
                 <a class="nav-link" aria-current="page" href="#landing">LANDING</a>
@@ -169,27 +169,40 @@
       <div class="container">
         <div class="row text-center">
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <h5>Contact Us</h5>
             <p>Email: info.marioteam@gmail.com</p>
             <p>Email: mariostartc2o@gmail.com</p>
+            <hr />
+            <h5 style="margin-bottom: 10px;">REBELLiOUS CORPERATION</h5>
+              <div class="row">
+                <p class="col-md-6">Feng - Founder</p>
+                <p class="col-md-6">Gigi - Co-Founder</p>
+              </div>
+              <div class="row">
+                <p class="col-md-6">Zeka - CFO</p>
+                <p class="col-md-6">Spoon - CTO</p>
+              </div>
+              <hr />
+                <a class="dropdown-item " href="https://t.me/G3jA5eSktEEyNjll" target="_blank">Telegram <i class="bi bi-telegram tele"></i></a>
+                <a class="dropdown-item" href="https://twitter.com/mario_onsol" target="_blank">Twitter <i class="bi bi-twitter-x twitter"></i></a>
+                <a class="dropdown-item" href="https://youtube.com/@MarioStartonSol?si=aVVxMwTPxRbGJA5b" target="_blank">Youtube <i class="bi bi-youtube"></i></a>
+                <a class="dropdown-item" href="https://www.tiktok.com/@mariostartonsol" target="_blank">Tiktok <i class="bi bi-tiktok"></i></a>
+              <hr />
+              <img src="./image/buy-2.jpg" />
+              <p>CA: </p>
+              <div class="nav-link" href="#">
+
+                <span class="ca-box">4YDo2b2AscrPLTJU739ouGJRpVTY9rRE53tdSXf7ev2P</span>
+              </div>
+              <hr />
           </div>
-          <div class="col-md-6">
-            <h5>Our Team - Rebellious Cooperations</h5>
-            <ul style="list-style-type: none;">
-              <div class="row">
-                <li class="col-md-6">Feng - Founder</li>
-                <li class="col-md-6">Gigi - Co-Founder</li>
-              </div>
-              <div class="row">
-                <li class="col-md-6">Zeka - CFO</li>
-                <li class="col-md-6">Spoon - CTO</li>
-              </div>
-            </ul>
+          <div class="col-md-8">
+            <img src="./image/team-1.jpg" id="team-pic"/>
           </div>
         </div>
         <div class="text-center copy-right">
-          <p>&copy; 2024 - All Rights Reserved - Rebellious Corp. </p>
+          <p>&copy; 2024 - All Rights Reserved - REBELLiOUS CORP. </p>
         </div>
       </div>
     </footer>
@@ -251,20 +264,22 @@
 
         const caAudio = document.getElementById("myAudio-copy")
 
-        const caBox = document.querySelector("#ca-box")
-        caBox.addEventListener("click", () => {
-          const textToCopy = caBox.innerHTML;
+        const caBoxes = document.querySelectorAll(".ca-box")
+        caBoxes.forEach(caBox => {
+          caBox.addEventListener("click", () => {
+            const textToCopy = caBox.innerHTML;
 
-          navigator.clipboard.writeText(textToCopy)
-          .then(() => {
-            caAudio.play()
-            alert('CA copied to clipboard. Thank you and good luck!')
-          })
-          .catch((e) => {
-            alert("Unable to copy CA")
-            console.error("Error", e)
-          })
-        })
+            navigator.clipboard.writeText(textToCopy)
+              .then(() => {
+                caAudio.play();
+                alert('CA copied to clipboard. Thank you and good luck!');
+              })
+              .catch((e) => {
+                alert("Unable to copy CA");
+                console.error("Error", e);
+              });
+          });
+        });
 
         // tieng nhay
         const dividerElements = document.querySelectorAll('.divider');
